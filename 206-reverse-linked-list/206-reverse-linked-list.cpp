@@ -8,20 +8,9 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-class Solution {
+class Solution 
+{
 public:
-    
-    
-    void print(ListNode* temp)
-    {
-        while(temp)
-        {
-            cout << temp->val << " ";
-            temp = temp->next;
-        }
-    }
-    
-    
     ListNode* reverseList(ListNode* head)
     {
         if(!head) return head;
