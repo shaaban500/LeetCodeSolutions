@@ -13,9 +13,12 @@ public:
     {
         int l = lower_bound(v[value].begin(), v[value].end(), left) - v[value].begin();
         int r = lower_bound(v[value].begin(), v[value].end(), right) - v[value].begin();    
-        if(r==v[value].size() || v[value][r] > right) r--;
-        if(l == v[value].size() || v[value][l] > right) return 0;
-        cout << l << " "<<r<<endl;
+        
+        if(r==v[value].size() || v[value][r] > right) 
+            r--;
+        
+        if(l == v[value].size() || v[value][l] > right) 
+            return 0;        
         
         return r - l  + 1;
         
