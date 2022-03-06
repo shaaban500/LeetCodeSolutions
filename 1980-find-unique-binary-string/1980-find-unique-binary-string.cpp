@@ -3,9 +3,10 @@ public:
     
     string findDifferentBinaryString(vector<string>& nums) 
     {
-        int n = nums[0].size();
-        int m = nums.size();
         map<string,int>mp;
+        int m = nums.size();
+        int n = nums[0].size();
+
         for(int i = 0 ; i < m ; i++)   
             mp[nums[i]] = 1;
         
@@ -23,48 +24,3 @@ public:
         return "";
     }
 };
-/*
-    111
-    000
-        
-    010
-    101 
-        
-    100
-    011
-        
-    001  
-    110
-        
-        
-     1010
-     0101
-     
-     
-     1011
-     0100
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-   */
