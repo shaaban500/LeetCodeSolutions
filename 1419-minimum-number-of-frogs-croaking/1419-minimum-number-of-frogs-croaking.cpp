@@ -33,6 +33,7 @@ public:
         
         if(!c.empty() || !r.empty() || !o.empty() || !a.empty())
             return -1;
+        
         for(int i = 1 ; i < n ; i++)
             partialSum[i] += partialSum[i - 1];    
         
