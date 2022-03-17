@@ -17,6 +17,7 @@ public:
                 zero++;
                 one = 0;
             }
+            
             mxOne = max(mxOne, one);
             mxZero = max(mxZero, zero);
         }
