@@ -16,12 +16,10 @@ public:
     int minSpeedOnTime(vector<int>& dist, double hour)
     {
         int l = 1, r = 1e8;
-        
-        while(l < r)
+        for(int i = 0 ; i < 50 ; i++)
         {
             int mid = (l + r) / 2;
-            (can(mid, dist, hour))? r = mid : l = mid + 1;    
-            cout << l << " "<<r<<endl;
+            (can(mid, dist, hour))? r = mid : l = mid;
         }
         
         return r == 1e8 ? -1 : r;
@@ -29,12 +27,13 @@ public:
 };
 
 /*
-        binary search solution
-        
-        for(int i = 0 ; i < 50 ; i++)
+        another way to write binary search
+        while(l < r)
         {
             int mid = (l + r) / 2;
-            (can(mid, dist, hour))? r = mid : l = mid;
+            (can(mid, dist, hour))? r = mid : l = mid + 1;    
+            cout << l << " "<<r<<endl;
         }
+        
         
 */
