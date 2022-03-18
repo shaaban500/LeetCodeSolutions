@@ -3,7 +3,7 @@ public:
     int digArtifacts(int n, vector<vector<int>>& artifacts, vector<vector<int>>& dig)
     {
         int ans = 0;
-        int digged[n][n];
+        bool digged[n][n];
         memset(digged, 0 ,sizeof digged);
         
         for(int i = 0 ; i < dig.size() ; i++)
@@ -20,18 +20,12 @@ public:
             int r2 = artifacts[i][2];
             int c2 = artifacts[i][3];
             
-            int tot = 0, done = 0;
+            bool full = 1;
             for(int r = r1 ; r <= r2 ; r++)
-            {
                 for(int c = c1 ; c <= c2 ; c++)
-                {
-                    tot++;
-                    if(digged[r][c]) done++;
-                }
-            }
-            
-            if(done == tot) 
-                ans++;
+                    full &= digged[r][c];
+                
+            ans += full;
         }
         
         return ans;
