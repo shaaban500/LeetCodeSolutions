@@ -1,7 +1,7 @@
 class FindSumPairs {
 public:
     
-    map<int,int> mp;
+    unordered_map<int,int> mp;
     vector<int> a, b;
     
     FindSumPairs(vector<int>& nums1, vector<int>& nums2) 
