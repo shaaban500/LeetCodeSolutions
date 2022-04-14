@@ -36,8 +36,7 @@ public:
         else
             return dp[pos][lane] = 1 + min(solve(pos + 1, l1), solve(pos + 1, l2));
 
-        return dp[pos][lane] = 0;
-    
+        
     }
     
     int minSideJumps(vector<int>& arr) 
