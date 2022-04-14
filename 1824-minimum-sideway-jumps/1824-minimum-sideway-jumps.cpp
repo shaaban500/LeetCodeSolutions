@@ -4,7 +4,7 @@ public:
     int n;
     vector<vector<int>> dp;
     
-    int solve(int pos, int lane, vector<vector<int>>& dp, vector<int>& obstacles)
+    int solve(int pos, int lane, vector<int>& obstacles)
     {
         if(pos == n - 1)
             return dp[pos][lane] = 0;
@@ -14,7 +14,7 @@ public:
         
         if(obstacles[pos + 1] != lane)
         {
-            return dp[pos][lane] = solve(pos + 1, lane, dp, obstacles);
+            return dp[pos][lane] = solve(pos + 1, lane, obstacles);
         }
         else
         {
@@ -28,16 +28,15 @@ public:
                 l1 = 1, l2 = 2;
             
             if(obstacles[pos] == l1)
-                return dp[pos][lane] = 1 + solve(pos+1, l2, dp, obstacles);
+                return dp[pos][lane] = 1 + solve(pos+1, l2, obstacles);
             
             else if(obstacles[pos] == l2)
-                return dp[pos][lane] = 1 + solve(pos + 1, l1, dp, obstacles);
+                return dp[pos][lane] = 1 + solve(pos + 1, l1, obstacles);
             
             else
-                return dp[pos][lane] = 1 + min(solve(pos + 1, l1, dp, obstacles), solve(pos + 1, l2, dp, obstacles));
+                return dp[pos][lane] = 1 + min(solve(pos + 1, l1, obstacles), solve(pos + 1, l2, obstacles));
         }
         
-    
         return dp[pos][lane] = 0;
     
     }
@@ -46,6 +45,6 @@ public:
     {
         n = obstacles.size();
         dp.resize(obstacles.size() + 1, vector<int>(4, -1));
-        return solve(0, 2, dp, obstacles);
+        return solve(0, 2, obstacles);
     }
 };
