@@ -1,8 +1,12 @@
 class Solution {
 public:
+    
+    int n;
+    vector<vector<int>> dp;
+    
     int solve(int pos, int lane, vector<vector<int>>& dp, vector<int>& obstacles)
     {
-        if(pos == obstacles.size() - 2)
+        if(pos == n - 1)
             return dp[pos][lane] = 0;
         
         if(dp[pos][lane] != -1)
@@ -40,7 +44,8 @@ public:
     
     int minSideJumps(vector<int>& obstacles) 
     {
-        vector<vector<int>> dp(obstacles.size() + 1, vector<int>(4, -1));
+        n = obstacles.size();
+        dp.resize(obstacles.size() + 1, vector<int>(4, -1));
         return solve(0, 2, dp, obstacles);
     }
 };
