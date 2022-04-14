@@ -12,7 +12,7 @@ public:
         {
             return dp[pos][lane] = solve(pos + 1, lane, dp, obstacles);
         }
-        if(obstacles[pos + 1] == lane)
+        else
         {
             int l1 = 0, l2 = 0;
             
