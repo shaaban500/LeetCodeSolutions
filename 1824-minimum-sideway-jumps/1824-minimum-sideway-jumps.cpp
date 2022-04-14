@@ -17,27 +17,25 @@ public:
         {
             return dp[pos][lane] = solve(pos + 1, lane);
         }
-        else
-        {
-            int l1 = 0, l2 = 0;
-            
-            if(lane == 1)
-                l1 = 2, l2 = 3;
-            else if(lane==2)
-                l1 = 1, l2 = 3;            
-            else
-                l1 = 1, l2 = 2;
-            
-            if(obstacles[pos] == l1)
-                return dp[pos][lane] = 1 + solve(pos+1, l2);
-            
-            else if(obstacles[pos] == l2)
-                return dp[pos][lane] = 1 + solve(pos + 1, l1);
-            
-            else
-                return dp[pos][lane] = 1 + min(solve(pos + 1, l1), solve(pos + 1, l2));
-        }
         
+        int l1 = 0, l2 = 0;
+
+        if(lane == 1)
+            l1 = 2, l2 = 3;
+        else if(lane==2)
+            l1 = 1, l2 = 3;            
+        else
+            l1 = 1, l2 = 2;
+
+        if(obstacles[pos] == l1)
+            return dp[pos][lane] = 1 + solve(pos+1, l2);
+
+        else if(obstacles[pos] == l2)
+            return dp[pos][lane] = 1 + solve(pos + 1, l1);
+
+        else
+            return dp[pos][lane] = 1 + min(solve(pos + 1, l1), solve(pos + 1, l2));
+
         return dp[pos][lane] = 0;
     
     }
