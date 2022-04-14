@@ -14,9 +14,7 @@ public:
             return dp[pos][lane];
         
         if(obstacles[pos + 1] != lane)
-        {
             return dp[pos][lane] = solve(pos + 1, lane);
-        }
         
         int l1 = 0, l2 = 0;
 
@@ -36,7 +34,6 @@ public:
         else
             return dp[pos][lane] = 1 + min(solve(pos + 1, l1), solve(pos + 1, l2));
 
-        
     }
     
     int minSideJumps(vector<int>& arr) 
