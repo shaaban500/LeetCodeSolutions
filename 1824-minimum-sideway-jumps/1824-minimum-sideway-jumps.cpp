@@ -3,8 +3,9 @@ public:
     
     int n;
     vector<vector<int>> dp;
-    
-    int solve(int pos, int lane, vector<int>& obstacles)
+    vector<int> obstacles;
+
+    int solve(int pos, int lane)
     {
         if(pos == n - 1)
             return dp[pos][lane] = 0;
@@ -14,7 +15,7 @@ public:
         
         if(obstacles[pos + 1] != lane)
         {
-            return dp[pos][lane] = solve(pos + 1, lane, obstacles);
+            return dp[pos][lane] = solve(pos + 1, lane);
         }
         else
         {
@@ -28,23 +29,28 @@ public:
                 l1 = 1, l2 = 2;
             
             if(obstacles[pos] == l1)
-                return dp[pos][lane] = 1 + solve(pos+1, l2, obstacles);
+                return dp[pos][lane] = 1 + solve(pos+1, l2);
             
             else if(obstacles[pos] == l2)
-                return dp[pos][lane] = 1 + solve(pos + 1, l1, obstacles);
+                return dp[pos][lane] = 1 + solve(pos + 1, l1);
             
             else
-                return dp[pos][lane] = 1 + min(solve(pos + 1, l1, obstacles), solve(pos + 1, l2, obstacles));
+                return dp[pos][lane] = 1 + min(solve(pos + 1, l1), solve(pos + 1, l2));
         }
         
         return dp[pos][lane] = 0;
     
     }
     
-    int minSideJumps(vector<int>& obstacles) 
+    int minSideJumps(vector<int>& arr) 
     {
-        n = obstacles.size();
+        n = arr.size();
+        
+        for(int i = 0 ; i < n ; i++)
+            obstacles.push_back(arr[i]);
+        
         dp.resize(obstacles.size() + 1, vector<int>(4, -1));
-        return solve(0, 2, obstacles);
+        
+        return solve(0, 2);
     }
 };
