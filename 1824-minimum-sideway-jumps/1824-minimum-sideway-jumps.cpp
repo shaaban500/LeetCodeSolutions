@@ -8,7 +8,7 @@ public:
     int solve(int pos, int lane)
     {
         if(pos == n - 1)
-            return dp[pos][lane] = 0;
+            return 0;
         
         if(dp[pos][lane] != -1)
             return dp[pos][lane];
