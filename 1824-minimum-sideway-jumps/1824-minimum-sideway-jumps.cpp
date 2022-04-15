@@ -1,50 +1,34 @@
 class Solution {
 public:
-    
-    int n;
-    vector<vector<int>> dp;
-    vector<int> obstacles;
-
-    int solve(int pos, int lane)
+    int minSideJumps(vector<int>& a) 
     {
-        if(pos == n - 1)
-            return 0;
+        int n = a.size();
+        vector<vector<int>> next(4, vector<int>(n, n - 1));
         
-        if(dp[pos][lane] != -1)
-            return dp[pos][lane];
+        for(int i = n - 2 ; i >= 0 ; i--)
+        {
+            for(int j = 1 ; j < 4 ; j++)
+                next[j][i] = next[j][i + 1];
+            
+            if(a[i]) next[a[i]][i] = i;
+        }  
         
-        if(obstacles[pos + 1] != lane)
-            return dp[pos][lane] = solve(pos + 1, lane);
+        int cur = 2, ans = 0;
+        for(int i = 0 ; i < n - 1 ; i++)
+        {
+            if(a[i + 1] == cur)
+            {
+                ans++;
+                int dist1 = next[1][i];
+                int dist2 = next[2][i];
+                int dist3 = next[3][i];
+                if(cur == 1) cur = dist2 > dist3 ? 2 : 3;
+                else if(cur == 2) cur = dist1 > dist3 ? 1 : 3;
+                else cur = dist1 > dist2 ? 1 : 2;
+            }
+        }
         
-        int l1 = 0, l2 = 0;
-
-        if(lane == 1)
-            l1 = 2, l2 = 3;
-        else if(lane==2)
-            l1 = 1, l2 = 3;            
-        else
-            l1 = 1, l2 = 2;
-
-        if(obstacles[pos] == l1)
-            return dp[pos][lane] = 1 + solve(pos+1, l2);
-
-        else if(obstacles[pos] == l2)
-            return dp[pos][lane] = 1 + solve(pos + 1, l1);
-
-        else
-            return dp[pos][lane] = 1 + min(solve(pos + 1, l1), solve(pos + 1, l2));
-
-    }
-    
-    int minSideJumps(vector<int>& arr) 
-    {
-        n = arr.size();
-        
-        for(int i = 0 ; i < n ; i++)
-            obstacles.push_back(arr[i]);
-        
-        dp.resize(obstacles.size() + 1, vector<int>(4, -1));
-        
-        return solve(0, 2);
+        return ans;
+                
     }
 };
