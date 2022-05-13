@@ -29,9 +29,8 @@ public:
         if(dp[i][j][dif] != -1)
             return dp[i][j][dif];
         
-        return dp[i][j][dif] =
-            solve(i + 1, j, open + (grid[i][j] == '('), closed + (grid[i][j] == ')'), grid)
-          || solve(i, j + 1, open + (grid[i][j] == '('), closed + (grid[i][j] == ')'), grid);
+        return dp[i][j][dif] = solve(i + 1, j, open + (grid[i][j] == '('), closed + (grid[i][j] == ')'), grid)
+                            || solve(i, j + 1, open + (grid[i][j] == '('), closed + (grid[i][j] == ')'), grid);
     }
      
     
