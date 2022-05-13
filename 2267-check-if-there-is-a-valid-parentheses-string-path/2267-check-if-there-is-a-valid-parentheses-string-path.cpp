@@ -18,11 +18,10 @@ public:
             
         if(i == n - 1 && j == m - 1)
         {
-            int o = open + (grid[i][j] == '(');
-            int c = closed + (grid[i][j] == ')');
-            dif = o - c;
+            dif = open + (grid[i][j] == '(') - closed - (grid[i][j] == ')');
             return (dif == 0);
         }
+        
         if(i >= n || j >= m) 
             return false;
 
