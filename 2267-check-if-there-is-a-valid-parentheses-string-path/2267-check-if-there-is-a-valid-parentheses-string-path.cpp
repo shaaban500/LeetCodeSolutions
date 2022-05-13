@@ -1,4 +1,5 @@
-class Solution {
+class Solution 
+{
 public:
     int dp[100][100][200];
     bool hasValidPath(vector<vector<char>>& grid) 
