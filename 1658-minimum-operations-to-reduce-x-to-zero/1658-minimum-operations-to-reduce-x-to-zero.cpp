@@ -20,12 +20,10 @@ public:
         prefixSum.push_back(1e9 + 1);
         suffixSum.push_back(1e9 + 1);
         
+        int needed;
         for(int i = 0 ; i < n ; i++)
         {
-            int needed = x - prefixSum[i];
-            
-            if(needed < 0)
-                continue;
+            needed = x - prefixSum[i];
             
             if(needed == 0)
             {
@@ -41,10 +39,7 @@ public:
 
         for(int i = 0 ; i < n ; i++)
         {
-            int needed = x - suffixSum[i];
-            
-            if(needed < 0)
-                continue;
+            needed = x - suffixSum[i];
             
             if(needed == 0)
             {
