@@ -1,19 +1,35 @@
 class MyHashSet {
+private:
+	int prime;
+	vector<list<int>> table;
+
+	int hash(int key) {
+		return key % prime;
+	}
+
+	list<int>::iterator search(int key) {
+		int h = hash(key);
+		return find(table[h].begin(), table[h].end(), key);
+	}
+
 public:
-        vector<bool> ans;
-    MyHashSet() {
-        ans.resize(1e6+1,false);
-    }
-    
-    void add(int key) {
-        ans[key]=true;
-    }
-    
-    void remove(int key) {
-        ans[key]=false;
-    }
-    
-    bool contains(int key) {
-        return ans[key];
-    }
+	MyHashSet() : prime(11527), table(prime) {}
+	
+	void add(int key) {
+		int h = hash(key);
+		if (!contains(key))
+			table[h].push_back(key);
+	}
+	
+	void remove(int key) {
+		int h = hash(key);
+		auto it = search(key);
+		if (it != table[h].end())
+			table[h].erase(it);
+	}
+	
+	bool contains(int key) {
+		int h = hash(key);
+		return search(key) != table[h].end();
+	}
 };
