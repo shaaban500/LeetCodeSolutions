@@ -13,7 +13,7 @@ private:
 	}
 
 public:
-	MyHashSet() : prime(20), table(prime) {}
+	MyHashSet() : prime(10), table(prime) {}
 	
 	void add(int key) {
 		int h = hash(key);
