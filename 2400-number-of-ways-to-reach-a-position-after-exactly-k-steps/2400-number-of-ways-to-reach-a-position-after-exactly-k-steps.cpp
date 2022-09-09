@@ -1,37 +1,35 @@
 class Solution 
 {
 public:
-    int dp[1001][1001][2];
-    int end, allSteps, start, mod = 1e9 + 7;
+    int dp[1001][1001][2], target, allSteps, mod = 1e9 + 7;
+   
     int numberOfWays(int startPos, int endPos, int k) 
     {
         memset(dp, -1, sizeof dp);
         allSteps = k;
-        end = abs(endPos - startPos);
-        start = startPos;
+        target = abs(endPos - startPos);
         return solve(0, 0, 0);
     }
     
-    int solve(int i, int st, bool minus)
+    int solve(int i, int steps, bool minus)
     {
-        if(st > allSteps)
+        if(steps > allSteps)
             return 0;
         
-        if(st == allSteps)
+        if(steps == allSteps)
         {
-            return i == end && !minus;
+            return i == target && !minus;
         }
         
-        if(dp[i][st][minus] != -1)
-            return dp[i][st][minus];
+        if(dp[i][steps][minus] != -1)
+            return dp[i][steps][minus];
         
-        int ret = 0;
         i = minus ? -i : i;
         int next = i + 1;
         int prev = i - 1;
-        ret = solve(next < 0 ? -next : next, st + 1, next < 0 ? 1 : 0) + 
-              solve(prev < 0 ? -prev : prev, st + 1, prev < 0 ? 1 : 0);
+        int ret = solve(next < 0 ? -next : next, steps + 1, next < 0 ? 1 : 0) + 
+                  solve(prev < 0 ? -prev : prev, steps + 1, prev < 0 ? 1 : 0);
 
-        return dp[minus ? -i : i][st][minus] = ret % mod;
+        return dp[minus ? -i : i][steps][minus] = ret % mod;
     }
 };
